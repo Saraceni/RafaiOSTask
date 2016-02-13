@@ -10,8 +10,11 @@ import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet var imageView: UIImageView!
+    
+    @IBOutlet var picture: UIImageView!
     
     @IBOutlet var label: UILabel!
+    
+    var data:NSDictionary?
     
 }

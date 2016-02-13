@@ -46,8 +46,6 @@ class ViewController: UIViewController {
                 }
             }
             self.collectionView.reloadData()
-            print("reloaded data")
-            print(self.links.count)
         }
         
         isLoading = false
@@ -101,6 +99,19 @@ class ViewController: UIViewController {
         clearData()
         RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let destController = segue.destinationViewController
+        if let showImageController = destController as? ShowImageController
+        {
+            if let cell = sender as? ImageCollectionViewCell
+            {
+                showImageController.img = cell.picture.image
+                showImageController.data = cell.data
+            }
+        }
+    }
 
 }
 
@@ -121,11 +132,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! ImageCollectionViewCell
-        //cell.backgroundColor = UIColor.blackColor()
-        let url = NSURL(string: links[indexPath.row])!
-        cell.imageView.sd_setImageWithURL(url)
         
-        cell.label.text = data.objectAtIndex(indexPath.row).valueForKey("description") as? String
+        let url = NSURL(string: links[indexPath.row])!
+        
+        cell.picture.sd_setImageWithURL(url)
+        
+        let description = data.objectAtIndex(indexPath.row).valueForKey("description") as? String
+        print(description)
+        cell.label.text = description
+        
+        cell.data = data.objectAtIndex(indexPath.row) as? NSDictionary
         
         if indexPath.row == links.count-1  { loadMoreData() }
         
@@ -143,30 +159,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         return viewSize
     }
     
-    
-    
-    
-    
-    
-    
-    /*func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        var viewSize = CGSize()
-        
-        //if let width = collectionViewLayout.frame.size.width { viewSize.width = width/3; viewSize.height = width/3 }
-        //if let width = collectionView.bounds.size.width { viewSize.width = width/3; viewSize.height = width/3 }
-        //else { viewSize.width = 128; viewSize.height = 128 }
-        
-        //let width = collectionView.bounds.size.width
-        let width = collectionView.frame.size.width
-        viewSize.width = width/3; viewSize.height = width/3
-        
-        return viewSize
-    }*/
-    
-    /*func void didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-    <#code#>
-    }*/
 }
 
 
