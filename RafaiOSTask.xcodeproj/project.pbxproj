@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		284D4CE9DE67393A19C6097A /* Pods_RafaiOSTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8209BF77DF9A5959BF2B2C /* Pods_RafaiOSTask.framework */; };
 		89E422171C6EB56B00F88650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E422161C6EB56B00F88650 /* AppDelegate.swift */; };
 		89E422191C6EB56B00F88650 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E422181C6EB56B00F88650 /* ViewController.swift */; };
 		89E4221C1C6EB56B00F88650 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89E4221A1C6EB56B00F88650 /* Main.storyboard */; };
@@ -21,6 +22,8 @@
 		89E422681C6EE09600F88650 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E422671C6EE09600F88650 /* JSONHandler.swift */; };
 		89E4226A1C6EE77200F88650 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E422691C6EE77200F88650 /* DataParser.swift */; };
 		89E4226C1C6EEE8F00F88650 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E4226B1C6EEE8F00F88650 /* ImageCollectionViewCell.swift */; };
+		E7425D8A3A0EC8E99296482F /* Pods_RafaiOSTaskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C7727172CB98878F5A05D /* Pods_RafaiOSTaskUITests.framework */; };
+		EBBE4D2C919F5F8B441AAB52 /* Pods_RafaiOSTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2BA8AB03D31CC390AB4A7B /* Pods_RafaiOSTaskTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +114,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		216C7727172CB98878F5A05D /* Pods_RafaiOSTaskUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RafaiOSTaskUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AF9BB854A1DE145866B7D2E /* Pods-RafaiOSTaskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTaskTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTaskTests/Pods-RafaiOSTaskTests.release.xcconfig"; sourceTree = "<group>"; };
+		3B8209BF77DF9A5959BF2B2C /* Pods_RafaiOSTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RafaiOSTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41B3578CD0001CDBBDD3B3AC /* Pods-RafaiOSTaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTaskTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTaskTests/Pods-RafaiOSTaskTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89E422131C6EB56B00F88650 /* RafaiOSTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RafaiOSTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E422161C6EB56B00F88650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89E422181C6EB56B00F88650 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +137,11 @@
 		89E422671C6EE09600F88650 /* JSONHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
 		89E422691C6EE77200F88650 /* DataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
 		89E4226B1C6EEE8F00F88650 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		9A2BA8AB03D31CC390AB4A7B /* Pods_RafaiOSTaskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RafaiOSTaskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2FEE76FDCEAB51A7F2AC385 /* Pods-RafaiOSTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTask/Pods-RafaiOSTask.release.xcconfig"; sourceTree = "<group>"; };
+		A468C0CE433C0ECD7EA20E0B /* Pods-RafaiOSTaskUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTaskUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTaskUITests/Pods-RafaiOSTaskUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BC5A0E9974A2CAEF30FB7598 /* Pods-RafaiOSTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTask/Pods-RafaiOSTask.debug.xcconfig"; sourceTree = "<group>"; };
+		C1FACA41661BFD9E69F4E247 /* Pods-RafaiOSTaskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTaskUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTaskUITests/Pods-RafaiOSTaskUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89E4225C1C6EB65000F88650 /* Alamofire.framework in Frameworks */,
+				284D4CE9DE67393A19C6097A /* Pods_RafaiOSTask.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBBE4D2C919F5F8B441AAB52 /* Pods_RafaiOSTaskTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,12 +166,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7425D8A3A0EC8E99296482F /* Pods_RafaiOSTaskUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0D76305B6F8C6FF8561115 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BC5A0E9974A2CAEF30FB7598 /* Pods-RafaiOSTask.debug.xcconfig */,
+				A2FEE76FDCEAB51A7F2AC385 /* Pods-RafaiOSTask.release.xcconfig */,
+				41B3578CD0001CDBBDD3B3AC /* Pods-RafaiOSTaskTests.debug.xcconfig */,
+				3AF9BB854A1DE145866B7D2E /* Pods-RafaiOSTaskTests.release.xcconfig */,
+				C1FACA41661BFD9E69F4E247 /* Pods-RafaiOSTaskUITests.debug.xcconfig */,
+				A468C0CE433C0ECD7EA20E0B /* Pods-RafaiOSTaskUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4729F84B1FA6CB5166CE25D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B8209BF77DF9A5959BF2B2C /* Pods_RafaiOSTask.framework */,
+				9A2BA8AB03D31CC390AB4A7B /* Pods_RafaiOSTaskTests.framework */,
+				216C7727172CB98878F5A05D /* Pods_RafaiOSTaskUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		89E4220A1C6EB56B00F88650 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +204,8 @@
 				89E4222A1C6EB56B00F88650 /* RafaiOSTaskTests */,
 				89E422351C6EB56B00F88650 /* RafaiOSTaskUITests */,
 				89E422141C6EB56B00F88650 /* Products */,
+				2C0D76305B6F8C6FF8561115 /* Pods */,
+				4729F84B1FA6CB5166CE25D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -252,10 +292,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89E4223B1C6EB56B00F88650 /* Build configuration list for PBXNativeTarget "RafaiOSTask" */;
 			buildPhases = (
+				C93F99D8D70FF93827750A43 /* Check Pods Manifest.lock */,
 				89E4220F1C6EB56B00F88650 /* Sources */,
 				89E422101C6EB56B00F88650 /* Frameworks */,
 				89E422111C6EB56B00F88650 /* Resources */,
 				89E422601C6EB65000F88650 /* Embed Frameworks */,
+				39EC28C53EFC5EE00241E562 /* Embed Pods Frameworks */,
+				0AE68D8CE63C989F310A000A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,9 +314,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89E4223E1C6EB56B00F88650 /* Build configuration list for PBXNativeTarget "RafaiOSTaskTests" */;
 			buildPhases = (
+				7D462482BD4510727884CD93 /* Check Pods Manifest.lock */,
 				89E422231C6EB56B00F88650 /* Sources */,
 				89E422241C6EB56B00F88650 /* Frameworks */,
 				89E422251C6EB56B00F88650 /* Resources */,
+				72E24149E214C1FCFDCCA045 /* Embed Pods Frameworks */,
+				E8E18478A528933C874D15AB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,9 +335,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89E422411C6EB56B00F88650 /* Build configuration list for PBXNativeTarget "RafaiOSTaskUITests" */;
 			buildPhases = (
+				D06360A53B962BA31A22A47B /* Check Pods Manifest.lock */,
 				89E4222E1C6EB56B00F88650 /* Sources */,
 				89E4222F1C6EB56B00F88650 /* Frameworks */,
 				89E422301C6EB56B00F88650 /* Resources */,
+				56396D9FB53DC12115F4E877 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -434,6 +482,129 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0AE68D8CE63C989F310A000A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RafaiOSTask/Pods-RafaiOSTask-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39EC28C53EFC5EE00241E562 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RafaiOSTask/Pods-RafaiOSTask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56396D9FB53DC12115F4E877 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RafaiOSTaskUITests/Pods-RafaiOSTaskUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72E24149E214C1FCFDCCA045 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RafaiOSTaskTests/Pods-RafaiOSTaskTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D462482BD4510727884CD93 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C93F99D8D70FF93827750A43 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D06360A53B962BA31A22A47B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E8E18478A528933C874D15AB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RafaiOSTaskTests/Pods-RafaiOSTaskTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		89E4220F1C6EB56B00F88650 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -545,6 +716,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -583,6 +755,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -590,6 +763,7 @@
 		};
 		89E4223C1C6EB56B00F88650 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC5A0E9974A2CAEF30FB7598 /* Pods-RafaiOSTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -602,6 +776,7 @@
 		};
 		89E4223D1C6EB56B00F88650 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2FEE76FDCEAB51A7F2AC385 /* Pods-RafaiOSTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -614,6 +789,7 @@
 		};
 		89E4223F1C6EB56B00F88650 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41B3578CD0001CDBBDD3B3AC /* Pods-RafaiOSTaskTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = RafaiOSTaskTests/Info.plist;
@@ -626,6 +802,7 @@
 		};
 		89E422401C6EB56B00F88650 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AF9BB854A1DE145866B7D2E /* Pods-RafaiOSTaskTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = RafaiOSTaskTests/Info.plist;
@@ -638,6 +815,7 @@
 		};
 		89E422421C6EB56B00F88650 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1FACA41661BFD9E69F4E247 /* Pods-RafaiOSTaskUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RafaiOSTaskUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -650,6 +828,7 @@
 		};
 		89E422431C6EB56B00F88650 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A468C0CE433C0ECD7EA20E0B /* Pods-RafaiOSTaskUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RafaiOSTaskUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -679,6 +858,7 @@
 				89E4223D1C6EB56B00F88650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		89E4223E1C6EB56B00F88650 /* Build configuration list for PBXNativeTarget "RafaiOSTaskTests" */ = {
 			isa = XCConfigurationList;
@@ -687,6 +867,7 @@
 				89E422401C6EB56B00F88650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		89E422411C6EB56B00F88650 /* Build configuration list for PBXNativeTarget "RafaiOSTaskUITests" */ = {
 			isa = XCConfigurationList;
@@ -695,6 +876,7 @@
 				89E422431C6EB56B00F88650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

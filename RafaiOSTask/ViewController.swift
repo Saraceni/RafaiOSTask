@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SDWebImage
 
 class ViewController: UIViewController {
     
@@ -67,8 +68,10 @@ extension ViewController: UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! ImageCollectionViewCell
         cell.backgroundColor = UIColor.blackColor()
-        let data = NSData(contentsOfURL: NSURL(string: links[indexPath.row])!)
-        cell.imageView.image = UIImage(data: data!)
+        //let data = NSData(contentsOfURL: NSURL(string: links[indexPath.row])!)
+        //cell.imageView.image = UIImage(data: data!)
+        let url = NSURL(string: links[indexPath.row])!
+        cell.imageView.sd_setImageWithURL(url)
         // Configure the cell
         return cell
     }
