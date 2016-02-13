@@ -63,10 +63,7 @@ class RafaiOSTaskTests: XCTestCase {
                 var array = DataParser.getArrays(response)
                 XCTAssertNotNil(array)
                 XCTAssertGreaterThan(array!.count, 0)
-                for str in array!
-                {
-                    
-                }
+                print(array)
                 
                 expectation.fulfill()
             }
