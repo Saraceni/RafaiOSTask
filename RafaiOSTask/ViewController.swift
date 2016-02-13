@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     var isViral = true
     
-    var isLoading = false
+    var isLoading = true
     
     var section = RequestHelper.SECTION_HOT
     
@@ -60,15 +60,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         tabBar.delegate = self
         
         tabBar.selectedItem = hotBarItem
         
         segmentedControl.selectedSegmentIndex = viral
         segmentedControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
-        
-        isLoading = true
-        RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
+        segmentedControl.hidden = true
         
     }
 
@@ -83,6 +82,8 @@ class ViewController: UIViewController {
         
         page++
         
+        isLoading = true
+        
         RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
     }
     
@@ -91,6 +92,7 @@ class ViewController: UIViewController {
         self.data.removeAllObjects()
         self.links.removeAll()
         page = 0
+        collectionView.reloadData()
     }
     
     @IBAction func valueChanged(sender: UISegmentedControl) {
@@ -107,7 +109,7 @@ extension ViewController: UICollectionViewDelegate
    
 }
 
-extension ViewController: UICollectionViewDataSource
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -119,13 +121,13 @@ extension ViewController: UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! ImageCollectionViewCell
-        cell.backgroundColor = UIColor.blackColor()
+        //cell.backgroundColor = UIColor.blackColor()
         let url = NSURL(string: links[indexPath.row])!
         cell.imageView.sd_setImageWithURL(url)
         
         cell.label.text = data.objectAtIndex(indexPath.row).valueForKey("description") as? String
         
-        if indexPath.row == links.count-1 { loadMoreData() }
+        if indexPath.row == links.count-1  { loadMoreData() }
         
         return cell
     }
@@ -135,12 +137,38 @@ extension ViewController: UICollectionViewDataSource
         
         var viewSize = CGSize()
         
-        if let width = collectionViewLayout.collectionView?.bounds.size.width { viewSize.width = width/3; viewSize.height = width/3 }
-        else { viewSize.width = 128; viewSize.height = 128 }
+        let width = collectionView.frame.size.width
+        viewSize.width = width/3; viewSize.height = width/3
         
         return viewSize
     }
+    
+    
+    
+    
+    
+    
+    
+    /*func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        var viewSize = CGSize()
+        
+        //if let width = collectionViewLayout.frame.size.width { viewSize.width = width/3; viewSize.height = width/3 }
+        //if let width = collectionView.bounds.size.width { viewSize.width = width/3; viewSize.height = width/3 }
+        //else { viewSize.width = 128; viewSize.height = 128 }
+        
+        //let width = collectionView.bounds.size.width
+        let width = collectionView.frame.size.width
+        viewSize.width = width/3; viewSize.height = width/3
+        
+        return viewSize
+    }*/
+    
+    /*func void didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    <#code#>
+    }*/
 }
+
 
 extension ViewController: UITabBarDelegate
 {
@@ -149,9 +177,9 @@ extension ViewController: UITabBarDelegate
         isLoading = true
         clearData()
         
-        if item === topBarItem { section = RequestHelper.SECTION_TOP }
-        else if item == userBarItem { section = RequestHelper.SECTION_USER }
-        else if item == hotBarItem { section = RequestHelper.SECTION_HOT }
+        if item === topBarItem { section = RequestHelper.SECTION_TOP; segmentedControl.hidden = true }
+        else if item == userBarItem { section = RequestHelper.SECTION_USER; segmentedControl.hidden = false  }
+        else if item == hotBarItem { section = RequestHelper.SECTION_HOT; segmentedControl.hidden = true }
         
         RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
     }
