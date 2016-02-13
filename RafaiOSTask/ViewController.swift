@@ -14,11 +14,22 @@ class ViewController: UIViewController {
     
     var links = [String]()
     var data = NSMutableArray()
+    var page = 0
+    
+    let viral = 0
+    let non_viral = 1
+    
+    var isViral = true
+    
+    var isLoading = false
+    
+    var section = RequestHelper.SECTION_HOT
     
     @IBOutlet var userBarItem: UITabBarItem!
     @IBOutlet var topBarItem: UITabBarItem!
     @IBOutlet var hotBarItem: UITabBarItem!
     
+    @IBOutlet var segmentedControl: UISegmentedControl!
     
     @IBOutlet var tabBar: UITabBar!
     
@@ -26,8 +37,6 @@ class ViewController: UIViewController {
     {
         if let array = DataParser.getArrays(response) {
             //self.data = array
-            self.data.removeAllObjects()
-            self.links.removeAll()
             for element in array
             {
                 if let link = element["link"] as? String where link.hasSuffix(".png") || link.hasSuffix(".gif") {
@@ -40,6 +49,8 @@ class ViewController: UIViewController {
             print("reloaded data")
             print(self.links.count)
         }
+        
+        isLoading = false
     }
 
     @IBOutlet var collectionView: UICollectionView!
@@ -53,7 +64,11 @@ class ViewController: UIViewController {
         
         tabBar.selectedItem = hotBarItem
         
-        RequestHelper.performRequest(RequestHelper.SECTION_HOT, page: "0", viral: false, callback: callback)
+        segmentedControl.selectedSegmentIndex = viral
+        segmentedControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        
+        isLoading = true
+        RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
         
     }
 
@@ -62,8 +77,28 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func loadMoreData()
+    {
+        guard !isLoading else { return }
+        
+        page++
+        
+        RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
+    }
     
-
+    func clearData()
+    {
+        self.data.removeAllObjects()
+        self.links.removeAll()
+        page = 0
+    }
+    
+    @IBAction func valueChanged(sender: UISegmentedControl) {
+        print("valueChanged")
+        isViral = sender.selectedSegmentIndex == 0 ? true : false
+        clearData()
+        RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
+    }
 
 }
 
@@ -87,6 +122,11 @@ extension ViewController: UICollectionViewDataSource
         cell.backgroundColor = UIColor.blackColor()
         let url = NSURL(string: links[indexPath.row])!
         cell.imageView.sd_setImageWithURL(url)
+        
+        cell.label.text = data.objectAtIndex(indexPath.row).valueForKey("description") as? String
+        
+        if indexPath.row == links.count-1 { loadMoreData() }
+        
         return cell
     }
     
@@ -105,18 +145,15 @@ extension ViewController: UICollectionViewDataSource
 extension ViewController: UITabBarDelegate
 {
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        if item === topBarItem
-        {
-            RequestHelper.performRequest(RequestHelper.SECTION_TOP, page: "0", viral: false, callback: callback)
-        }
-        else if item == userBarItem
-        {
-            RequestHelper.performRequest(RequestHelper.SECTION_USER, page: "0", viral: false, callback: callback)
-        }
-        else if item == hotBarItem
-        {
-            RequestHelper.performRequest(RequestHelper.SECTION_HOT, page: "0", viral: false, callback: callback)
-        }
+        
+        isLoading = true
+        clearData()
+        
+        if item === topBarItem { section = RequestHelper.SECTION_TOP }
+        else if item == userBarItem { section = RequestHelper.SECTION_USER }
+        else if item == hotBarItem { section = RequestHelper.SECTION_HOT }
+        
+        RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
     }
 }
 
