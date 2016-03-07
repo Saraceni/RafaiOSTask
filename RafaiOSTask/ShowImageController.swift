@@ -10,25 +10,66 @@ import UIKit
 
 class ShowImageController: UIViewController {
     
-    var data: NSDictionary?
-    var img: UIImage?
+    //var data: NSDictionary?
+    var imgurObject: ImgurObject?
+    //var img: UIImage?
 
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var downvotesLabel: UILabel!
     @IBOutlet var upvotesLabel: UILabel!
     @IBOutlet var picture: UIImageView!
     
+    @IBOutlet var photoImgView: UIImageView!
+    @IBOutlet var webView: UIWebView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        picture.image = img
-        // Do any additional setup after loading the view.
+        //picture.image = img
         
-        let title = data?.objectForKey("title") as? String
-        self.title = title
+        //let title = data?.objectForKey("title") as? String
+        //self.title = title
         
-        if let upvotes = data?.objectForKey("ups") as? Int
+        self.title = imgurObject?.title
+        
+        if let upvotes = imgurObject?.ups {
+            upvotesLabel.text = "Ups: " + String(upvotes)
+        } else { upvotesLabel.text = "" }
+        
+        if let downvotes = imgurObject?.downs {
+            downvotesLabel.text = "Downs: " + String(downvotes)
+        } else { downvotesLabel.text = "" }
+        
+        if let score = imgurObject?.score {
+            scoreLabel.text = "Score: " + String(score)
+        } else { scoreLabel.text = "" }
+        
+        if let isAlbum = imgurObject?.isAlbum {
+            
+            let url = NSURL(string: imgurObject!.link)!
+            
+            if isAlbum {
+            
+                photoImgView.hidden = true
+                webView.hidden = false
+                webView.delegate = self
+                
+                let urlRequest = NSURLRequest(URL: url)
+                webView.loadRequest(urlRequest)
+            }
+            else {
+                
+                webView.hidden = true
+                photoImgView.hidden = false
+                
+                photoImgView.sd_setImageWithURL(url)
+            }
+            
+        }
+        
+        /*if let upvotes = data?.objectForKey("ups") as? Int
         {
             upvotesLabel.text = "Ups: " + String(upvotes)
         } else { upvotesLabel.text = "" }
@@ -41,7 +82,7 @@ class ShowImageController: UIViewController {
         if let score = data?.objectForKey("score") as? Int
         {
             scoreLabel.text = "Score: " + String(score)
-        } else { scoreLabel.text = "" }
+        } else { scoreLabel.text = "" }*/
         
     }
 
@@ -61,4 +102,13 @@ class ShowImageController: UIViewController {
     }
     */
 
+}
+
+extension ShowImageController: UIWebViewDelegate {
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        if let error = error {
+            print(error)
+        }
+    }
 }

@@ -15,6 +15,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var label: UILabel!
     
-    var data:NSDictionary?
+    //var data:NSDictionary?
+    var imgurObject: ImgurObject?
     
 }
