@@ -29,7 +29,7 @@ class RequestHelper
         static let APIKey = "Client-ID 56c5ec8b7f7da3e"
     }
     
-    static func performRequest(section: String, page: String, viral: Bool, callback: (response: (Response<AnyObject, NSError>), requestUUID: String)->()) -> String
+    static func performRequest(section: String, page: String, viral: Bool, sort: String?, window: String?, callback: (response: (Response<AnyObject, NSError>), requestUUID: String)->()) -> String
     {
         // https://api.imgur.com/3/gallery/{section}/{sort}/{page}?showViral=bool
         
@@ -40,8 +40,10 @@ class RequestHelper
         ]
         
         let showViral = viral ? "true" : "false"
-        let url = Imgur.APIBaseURL + ImgurParameterKeys.Gallery + "/" + section + "/" + page + "/?"
-            + ImgurParameterKeys.ShowViral + "=" + showViral
+        var url = Imgur.APIBaseURL + ImgurParameterKeys.Gallery + "/" + section + "/"
+        if sort != nil { url += sort! + "/" }
+        if window != nil { url += window! + "/" }
+        url += page + "/?" + ImgurParameterKeys.ShowViral + "=" + showViral
         
         Alamofire.request(.GET, url, headers: header)
             .responseJSON { (response) in

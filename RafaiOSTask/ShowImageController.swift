@@ -7,44 +7,80 @@
 //
 
 import UIKit
+import Foundation
 
 class ShowImageController: UIViewController {
     
-    //var data: NSDictionary?
     var imgurObject: ImgurObject?
-    //var img: UIImage?
 
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var downvotesLabel: UILabel!
     @IBOutlet var upvotesLabel: UILabel!
-    @IBOutlet var picture: UIImageView!
+    @IBOutlet var descriptionLabel: UILabel!
     
+    @IBOutlet var picture: UIImageView!
     @IBOutlet var photoImgView: UIImageView!
     @IBOutlet var webView: UIWebView!
+    @IBOutlet var scrollView: UIScrollView!
     
-    
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //picture.image = img
-        
-        //let title = data?.objectForKey("title") as? String
-        //self.title = title
         
         self.title = imgurObject?.title
+        activityIndicator.hidden = true
         
         if let upvotes = imgurObject?.ups {
-            upvotesLabel.text = "Ups: " + String(upvotes)
+            
+            let upsAttachment = NSTextAttachment()
+            upsAttachment.image = UIImage(named: "ThumbUp24dp")
+            
+            let upsText = " " + String(upvotes)
+            let upsTextAttributed = NSAttributedString(string: upsText)
+            let upsAttachmentString = NSAttributedString(attachment: upsAttachment)
+            let upsAttributedText = NSMutableAttributedString(attributedString: upsAttachmentString)
+            upsAttributedText.appendAttributedString(upsTextAttributed)
+            
+            upvotesLabel.attributedText = upsAttributedText
+            
+            //upvotesLabel.text = "Ups: " + String(upvotes)
         } else { upvotesLabel.text = "" }
         
         if let downvotes = imgurObject?.downs {
-            downvotesLabel.text = "Downs: " + String(downvotes)
+            
+            let downsAttachment = NSTextAttachment()
+            downsAttachment.image = UIImage(named: "ThumbDown24dp")
+            let downsAttachmentString = NSAttributedString(attachment: downsAttachment)
+            
+            let downsText = " " + String(downvotes)
+            let downsTextAttributed = NSAttributedString(string: downsText)
+            let downsAttributedText = NSMutableAttributedString(attributedString: downsAttachmentString)
+            downsAttributedText.appendAttributedString(downsTextAttributed)
+            
+            downvotesLabel.attributedText = downsAttributedText
+            
         } else { downvotesLabel.text = "" }
         
         if let score = imgurObject?.score {
-            scoreLabel.text = "Score: " + String(score)
+            
+            let scoreAttachment = NSTextAttachment()
+            scoreAttachment.image = UIImage(named: "Top24dp")
+            let scoreAttachmentString = NSAttributedString(attachment: scoreAttachment)
+            
+            let scoreText = " " + String(score)
+            let scoreTextAttributed = NSAttributedString(string: scoreText)
+            let scoreAttributedText = NSMutableAttributedString(attributedString: scoreAttachmentString)
+            scoreAttributedText.appendAttributedString(scoreTextAttributed)
+            
+            scoreLabel.attributedText = scoreAttributedText
+            
         } else { scoreLabel.text = "" }
+        
+        if let description = imgurObject?.description {
+            descriptionLabel.text = description
+        }
+        else { descriptionLabel.hidden = true }
         
         if let isAlbum = imgurObject?.isAlbum {
             
@@ -52,37 +88,27 @@ class ShowImageController: UIViewController {
             
             if isAlbum {
             
-                photoImgView.hidden = true
+                scrollView.hidden = true
                 webView.hidden = false
                 webView.delegate = self
                 
+                activityIndicator.hidden = false
+                activityIndicator.startAnimating()
+                
                 let urlRequest = NSURLRequest(URL: url)
                 webView.loadRequest(urlRequest)
+                
+                descriptionLabel.hidden = true
             }
             else {
                 
                 webView.hidden = true
-                photoImgView.hidden = false
+                scrollView.hidden = false
                 
                 photoImgView.sd_setImageWithURL(url)
             }
             
         }
-        
-        /*if let upvotes = data?.objectForKey("ups") as? Int
-        {
-            upvotesLabel.text = "Ups: " + String(upvotes)
-        } else { upvotesLabel.text = "" }
-        
-        if let downvotes = data?.objectForKey("downs") as? Int
-        {
-            downvotesLabel.text = "Downs: " + String(downvotes)
-        } else { downvotesLabel.text = "" }
-        
-        if let score = data?.objectForKey("score") as? Int
-        {
-            scoreLabel.text = "Score: " + String(score)
-        } else { scoreLabel.text = "" }*/
         
     }
 
@@ -111,4 +137,21 @@ extension ShowImageController: UIWebViewDelegate {
             print(error)
         }
     }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        activityIndicator.stopAnimating()
+        activityIndicator.hidden = true
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+

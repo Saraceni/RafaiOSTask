@@ -11,6 +11,7 @@ import Foundation
 class ImgurObject {
     
     var link: String
+    var firstImageLink: String?
     var description: String?
     var isAlbum = false
     var title: String?

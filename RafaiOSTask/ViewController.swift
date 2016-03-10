@@ -12,16 +12,14 @@ import SDWebImage
 
 class ViewController: UIViewController {
     
-    //var links = [String]()
-    //var data = NSMutableArray()
+    var shouldUpdatePreferences = false
+    
     var data = [ImgurObject]()
     var page = 0
     
     
-    let viral = 0
-    let non_viral = 1
-    var isViral = true
-    //var isLoading = true
+    let list = 0
+    let grid = 1
     var section = RequestHelper.SECTION_HOT
     
     // MARK: - RestRequest Variables
@@ -40,6 +38,13 @@ class ViewController: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var imgurTableView: UITableView!
+    
+    // MARK: - Preferences Variables
+    var preferencesWindow: String?
+    var preferencesSort: String?
+    var preferencesShowViral = true
+    
     
     func callback(response: (Response<AnyObject, NSError>), requestUUID: String) -> ()
     {
@@ -50,7 +55,6 @@ class ViewController: UIViewController {
             
             for element in array {
                 
-                //where link.hasSuffix(".png") || link.hasSuffix(".gif")
                 if let link = element["link"] as? String {
                     
                     let imgurObject = ImgurObject(link: link)
@@ -61,18 +65,24 @@ class ViewController: UIViewController {
                     imgurObject.title = element["title"] as? String
                     if let isAlbum = element["is_album"] as? Bool where isAlbum {
                         imgurObject.isAlbum = true
+                        
+                        if let images = element["images"] as? NSArray where images.count > 0 {
+                            
+                            if let firstImage = images[0] as? NSDictionary, let imgLink = firstImage["link"] as? String {
+                                
+                                imgurObject.firstImageLink = imgLink
+                            }
+                        }
                     }
                     data.append(imgurObject)
-                    //self.links.append(link)
-                    //self.data.addObject(element)
                 }
             }
             
             self.collectionView.reloadData()
+            self.imgurTableView.reloadData()
         }
         
-        activityIndicator.hidden = true
-        //isLoading = false
+        activityIndicator.stopAnimating()
     }
     
     override func viewDidLoad() {
@@ -81,13 +91,28 @@ class ViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        imgurTableView.dataSource = self
+        imgurTableView.delegate = self
         tabBar.delegate = self
         tabBar.selectedItem = hotBarItem
         
-        segmentedControl.selectedSegmentIndex = viral
-        segmentedControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
-        segmentedControl.hidden = true
+        self.preferencesWindow = Prefs.getWindow()
+        self.preferencesSort = Prefs.getSort()
+        self.preferencesShowViral = Prefs.getShowViral()
         
+        self.currentRequestUUID = RequestHelper.performRequest(section, page: String(page), viral: preferencesShowViral, sort: preferencesSort, window: preferencesWindow,callback: callback)
+        
+        segmentedControl.selectedSegmentIndex = list
+        segmentedControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if self.shouldUpdatePreferences {
+            updatePreferences()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,39 +120,54 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func updatePreferences() {
+        preferencesWindow = Prefs.getWindow()
+        preferencesSort = Prefs.getSort()
+        preferencesShowViral = Prefs.getShowViral()
+        shouldUpdatePreferences = false
+        reloadData()
+    }
+    
+    func reloadData() {
+        
+        activityIndicator.startAnimating()
+        activityIndicator.hidden = false
+        clearData()
+        
+        self.currentRequestUUID = RequestHelper.performRequest(section, page: String(page), viral: preferencesShowViral, sort: preferencesSort, window: preferencesWindow, callback: callback)
+        
+    }
+    
     func loadMoreData()
     {
         guard activityIndicator.hidden else { return }
-        //guard !isLoading else { return }
-        
+    
         page++
-        
-        //isLoading = true
+    
+        activityIndicator.startAnimating()
         activityIndicator.hidden = false
         
-        //RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
-        
-        activityIndicator.hidden = false
-        currentRequestUUID = RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
+        currentRequestUUID = RequestHelper.performRequest(section, page: String(page), viral: preferencesShowViral, sort: preferencesSort, window: preferencesWindow, callback: callback)
     }
     
     func clearData()
     {
-        //self.data.removeAllObjects()
         self.data.removeAll()
-        //self.links.removeAll()
         page = 0
         collectionView.reloadData()
+        imgurTableView.reloadData()
     }
     
     @IBAction func valueChanged(sender: UISegmentedControl) {
-        print("valueChanged")
-        isViral = sender.selectedSegmentIndex == 0 ? true : false
-        clearData()
-        //RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
         
-        //activityIndicator.hidden = false
-        self.currentRequestUUID = RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
+        if segmentedControl.selectedSegmentIndex == list {
+            self.collectionView.hidden = true
+            self.imgurTableView.hidden = false
+        }
+        else if segmentedControl.selectedSegmentIndex == grid {
+            self.imgurTableView.hidden = true
+            self.collectionView.hidden = false
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -135,21 +175,57 @@ class ViewController: UIViewController {
         let destController = segue.destinationViewController
         if let showImageController = destController as? ShowImageController
         {
-            if let cell = sender as? ImageCollectionViewCell
-            {
+            if let cell = sender as? ImageCollectionViewCell{
                 showImageController.imgurObject = cell.imgurObject
-                //showImageController.img = cell.picture.image
-                //showImageController.data = cell.data
                 
+            }
+            else if let cell = sender as? ImgurTableViewCell {
+                showImageController.imgurObject = cell.imgurObject
             }
         }
     }
 
 }
 
-extension ViewController: UICollectionViewDelegate
-{
-   
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(ImgurTableViewCell.identifier, forIndexPath: indexPath) as! ImgurTableViewCell
+        
+        let imgurObject = data[indexPath.row]
+        
+        if imgurObject.isAlbum {
+            
+            if let firstImageLink = imgurObject.firstImageLink {
+                let url = NSURL(string: firstImageLink)!
+                cell.imgurImageView.sd_setImageWithURL(url)
+            }
+            else { cell.imgurImageView.image = UIImage(named: "Imgur48dp") }
+        }
+        else {
+            let url = NSURL(string: imgurObject.link)!
+            cell.imgurImageView.sd_setImageWithURL(url)
+        }
+        
+        cell.imgurLabel.text = imgurObject.description
+        
+        cell.imgurObject = imgurObject
+        
+        if indexPath.row == data.count-1 { loadMoreData() }
+        
+        return cell
+        
+    }
+    
 }
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
@@ -160,7 +236,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
-        //return links.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -169,7 +244,12 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegateFl
         let imgurObject = data[indexPath.row]
         
         if imgurObject.isAlbum {
-            cell.picture.image = UIImage(named: "PhotoAlbum48dp")
+            
+            if let firstImageLink = imgurObject.firstImageLink {
+                let url = NSURL(string: firstImageLink)!
+                cell.picture.sd_setImageWithURL(url)
+            }
+            else { cell.picture.image = UIImage(named: "Imgur48dp") }
         }
         else {
             let url = NSURL(string: imgurObject.link)!
@@ -202,15 +282,15 @@ extension ViewController: UITabBarDelegate
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         
         //isLoading = true
+        activityIndicator.startAnimating()
         activityIndicator.hidden = false
         clearData()
         
-        if item === topBarItem { section = RequestHelper.SECTION_TOP; segmentedControl.hidden = true }
-        else if item == userBarItem { section = RequestHelper.SECTION_USER; segmentedControl.hidden = false  }
-        else if item == hotBarItem { section = RequestHelper.SECTION_HOT; segmentedControl.hidden = true }
+        if item === topBarItem { section = RequestHelper.SECTION_TOP }
+        else if item == userBarItem { section = RequestHelper.SECTION_USER  }
+        else if item == hotBarItem { section = RequestHelper.SECTION_HOT }
         
-        //activityIndicator.hidden = false
-        self.currentRequestUUID = RequestHelper.performRequest(section, page: String(page), viral: isViral, callback: callback)
+        self.currentRequestUUID = RequestHelper.performRequest(section, page: String(page), viral: preferencesShowViral, sort: preferencesSort, window: preferencesWindow, callback: callback)
     }
 }
 

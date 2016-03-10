@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		284D4CE9DE67393A19C6097A /* Pods_RafaiOSTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8209BF77DF9A5959BF2B2C /* Pods_RafaiOSTask.framework */; };
+		8947F13A1C8F91780083CA92 /* Prefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947F1391C8F91780083CA92 /* Prefs.swift */; };
+		8947F1441C8F98020083CA92 /* SettingsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947F1431C8F98020083CA92 /* SettingsMenuController.swift */; };
 		897B7B7F1C8CE94400E556B4 /* ImgurObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897B7B7E1C8CE94400E556B4 /* ImgurObject.swift */; };
 		89E422171C6EB56B00F88650 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E422161C6EB56B00F88650 /* AppDelegate.swift */; };
 		89E422191C6EB56B00F88650 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E422181C6EB56B00F88650 /* ViewController.swift */; };
@@ -23,6 +25,7 @@
 		89E422681C6EE09600F88650 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E422671C6EE09600F88650 /* JSONHandler.swift */; };
 		89E4226A1C6EE77200F88650 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E422691C6EE77200F88650 /* DataParser.swift */; };
 		89E4226C1C6EEE8F00F88650 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E4226B1C6EEE8F00F88650 /* ImageCollectionViewCell.swift */; };
+		89EF4ACE1C8FB605002F72FF /* ImgurTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EF4ACD1C8FB605002F72FF /* ImgurTableViewCell.swift */; };
 		89F1D7EE1C6F69D500ECC3D6 /* ShowImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F1D7ED1C6F69D500ECC3D6 /* ShowImageController.swift */; };
 		E7425D8A3A0EC8E99296482F /* Pods_RafaiOSTaskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C7727172CB98878F5A05D /* Pods_RafaiOSTaskUITests.framework */; };
 		EBBE4D2C919F5F8B441AAB52 /* Pods_RafaiOSTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2BA8AB03D31CC390AB4A7B /* Pods_RafaiOSTaskTests.framework */; };
@@ -120,6 +123,8 @@
 		3AF9BB854A1DE145866B7D2E /* Pods-RafaiOSTaskTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTaskTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTaskTests/Pods-RafaiOSTaskTests.release.xcconfig"; sourceTree = "<group>"; };
 		3B8209BF77DF9A5959BF2B2C /* Pods_RafaiOSTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RafaiOSTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41B3578CD0001CDBBDD3B3AC /* Pods-RafaiOSTaskTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTaskTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTaskTests/Pods-RafaiOSTaskTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8947F1391C8F91780083CA92 /* Prefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prefs.swift; sourceTree = "<group>"; };
+		8947F1431C8F98020083CA92 /* SettingsMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuController.swift; sourceTree = "<group>"; };
 		897B7B7E1C8CE94400E556B4 /* ImgurObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurObject.swift; sourceTree = "<group>"; };
 		89E422131C6EB56B00F88650 /* RafaiOSTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RafaiOSTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E422161C6EB56B00F88650 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +145,7 @@
 		89E422671C6EE09600F88650 /* JSONHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
 		89E422691C6EE77200F88650 /* DataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
 		89E4226B1C6EEE8F00F88650 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		89EF4ACD1C8FB605002F72FF /* ImgurTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurTableViewCell.swift; sourceTree = "<group>"; };
 		89F1D7ED1C6F69D500ECC3D6 /* ShowImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowImageController.swift; sourceTree = "<group>"; };
 		9A2BA8AB03D31CC390AB4A7B /* Pods_RafaiOSTaskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RafaiOSTaskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2FEE76FDCEAB51A7F2AC385 /* Pods-RafaiOSTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RafaiOSTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-RafaiOSTask/Pods-RafaiOSTask.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 				89E422641C6ED2C300F88650 /* Protocols */,
 				89E422611C6EC94900F88650 /* Utils */,
 				89E422161C6EB56B00F88650 /* AppDelegate.swift */,
+				8947F1431C8F98020083CA92 /* SettingsMenuController.swift */,
 				89E4226B1C6EEE8F00F88650 /* ImageCollectionViewCell.swift */,
 				89F1D7ED1C6F69D500ECC3D6 /* ShowImageController.swift */,
 				89E422181C6EB56B00F88650 /* ViewController.swift */,
@@ -245,6 +252,7 @@
 				89E4221D1C6EB56B00F88650 /* Assets.xcassets */,
 				89E4221F1C6EB56B00F88650 /* LaunchScreen.storyboard */,
 				89E422221C6EB56B00F88650 /* Info.plist */,
+				89EF4ACD1C8FB605002F72FF /* ImgurTableViewCell.swift */,
 			);
 			path = RafaiOSTask;
 			sourceTree = "<group>";
@@ -287,6 +295,7 @@
 				89E422621C6EC96200F88650 /* RequestHelper.swift */,
 				89E422671C6EE09600F88650 /* JSONHandler.swift */,
 				89E422691C6EE77200F88650 /* DataParser.swift */,
+				8947F1391C8F91780083CA92 /* Prefs.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -625,9 +634,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				89E422631C6EC96200F88650 /* RequestHelper.swift in Sources */,
+				8947F1441C8F98020083CA92 /* SettingsMenuController.swift in Sources */,
 				89E422681C6EE09600F88650 /* JSONHandler.swift in Sources */,
+				8947F13A1C8F91780083CA92 /* Prefs.swift in Sources */,
 				89E4226A1C6EE77200F88650 /* DataParser.swift in Sources */,
 				89E4226C1C6EEE8F00F88650 /* ImageCollectionViewCell.swift in Sources */,
+				89EF4ACE1C8FB605002F72FF /* ImgurTableViewCell.swift in Sources */,
 				89F1D7EE1C6F69D500ECC3D6 /* ShowImageController.swift in Sources */,
 				89E422191C6EB56B00F88650 /* ViewController.swift in Sources */,
 				897B7B7F1C8CE94400E556B4 /* ImgurObject.swift in Sources */,

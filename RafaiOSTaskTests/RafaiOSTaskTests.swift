@@ -45,37 +45,6 @@ class RafaiOSTaskTests: XCTestCase {
         })
     }
     
-    func testAPIResponseV2()
-    {
-        let readyExpectation = expectationWithDescription("ready")
-        
-        class Callback: ResponseProtocol
-        {
-            var expectation: XCTestExpectation
-            
-            init(expectation: XCTestExpectation)
-            {
-                self.expectation = expectation
-            }
-            
-            func response(response: (Response<AnyObject, NSError>))
-            {
-                var array = DataParser.getArrays(response)
-                XCTAssertNotNil(array)
-                XCTAssertGreaterThan(array!.count, 0)
-                print(array)
-                
-                expectation.fulfill()
-            }
-        }
-        
-        RequestHelper.performRequest(RequestHelper.SECTION_HOT, page: "0", viral: false, callback: Callback(expectation: readyExpectation))
-        
-        waitForExpectationsWithTimeout(5, handler: { error in
-            XCTAssertNil(error, "Error")
-        })
-        
-    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
